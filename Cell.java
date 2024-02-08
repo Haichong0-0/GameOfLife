@@ -11,7 +11,7 @@ public abstract class Cell {
 
     private boolean alive;    
     private boolean nextAlive; // The state of the cell in the next iteration
-    private boolean aggresive, hasdisease;
+    private boolean aggresive, disease;
     private Field field;
     private Location location;
     private Color color = Color.WHITE;
@@ -95,7 +95,6 @@ public abstract class Cell {
         this.location = location;
         field.place(this, location);
     }
-
     /**
      * Return the cell's field.
      * @return The cell's field.
@@ -103,4 +102,16 @@ public abstract class Cell {
     protected Field getField() {
         return field;
     }
+    /*
+    Set the disease condition of the cell
+     */
+    protected void setDisease(Boolean T){disease = T;}
+
+    protected boolean hasDisease(){return disease;}
+
+    /*
+    Set if the Cell attacks
+     */
+    protected void setAggresive(Boolean T){aggresive = T;}
+    protected boolean willAttack(){return aggresive;}
 }
