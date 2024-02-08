@@ -40,16 +40,16 @@ public class Mycoplasma extends Cell {
                 died++;
             }
         }
-        if(alive<2||alive>3){
-            setNextState(false);
+        setNextState(false);
+        if (isAlive()){
+            if(alive==2||alive==3){
+                setNextState(true);
+            }
         }
         else{
-            if 
-        }
-        
-        if (isAlive()) {
-            if (neighbours.size() > 1)
+            if (alive ==3){
                 setNextState(true);
+            }
         }
     }
 }

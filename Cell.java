@@ -11,6 +11,7 @@ public abstract class Cell {
 
     private boolean alive;    
     private boolean nextAlive; // The state of the cell in the next iteration
+    private boolean aggresive, hasdisease;
     private Field field;
     private Location location;
     private Color color = Color.WHITE;

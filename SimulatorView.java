@@ -37,8 +37,6 @@ public class SimulatorView extends Application {
 
     /**
      * Create a view of the given width and height.
-     * @param height The simulation's height.
-     * @param width  The simulation's width.
      */
     @Override
     public void start(Stage stage) {
@@ -74,7 +72,8 @@ public class SimulatorView extends Application {
         stage.setTitle("Life Simulation");
         updateCanvas(simulator.getGeneration(), simulator.getField());
         
-        stage.show();     
+        stage.show();
+        simulate(10);
     }
 
     /**
