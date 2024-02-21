@@ -21,6 +21,8 @@ public class Mycoplasma extends Cell {
      */
     public Mycoplasma(Field field, Location location, Color col) {
         super(field, location, col);
+        setAggressive(false);
+        setDisease(false);
     }
 
     /**
@@ -31,13 +33,13 @@ public class Mycoplasma extends Cell {
         List<Location> locations = getField().adjacentLocations(getLocation());
         //setNextState(false);
         int alive = 0;
-        int died = 0;
+        int attack = 0;
         for (Location i : locations){
             if(getField().getObjectAt(i).isAlive()){
                 alive++;
-            }
-            else{
-                died++;
+                if(getField().getObjectAt(i).willAttack()){
+                    attack++;  
+                }
             }
         }
         setNextState(false);
@@ -50,6 +52,10 @@ public class Mycoplasma extends Cell {
             if (alive ==3){
                 setNextState(true);
             }
+        }
+
+        if(attack !=0){
+            setNextState(false);
         }
     }
 }

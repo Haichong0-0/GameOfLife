@@ -1,0 +1,45 @@
+Attack:
+Attack and defence mechanism with different strategy:
+    Tit for tat: aggressive if were attacked previous turn
+    Always Aggresive: Always attacks
+    Always Defensive: Never attacks
+    to be added.....
+
+
+Reproduction:
+When criterias are met,
+A cell may replicate itself to a neighboring cell where its original cell is dead
+
+functions ana variables need to be edited:
+List<Cell> cells
+private Field field;
+simOneGeneration()
+
+
+Symbiosis:
+Mutualism:
+
+parasitic:
+
+
+
+Disease:
+Change the Cell aggressive
+
+Spread to neighbor if not dead next turn
+
+
+
+Non-deterministic cells:
+Use randomizer class
+Actions can be taken includes:
+    change aggressive
+    change strategy
+    change reproductivity
+
+
+
+
+Amoeba:
+    Strategy:tit for tat
+

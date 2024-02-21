@@ -1,4 +1,6 @@
-import javafx.scene.paint.Color; 
+import javafx.scene.paint.Color;
+
+import java.util.List;
 
 /**
  * A class representing the shared characteristics of all forms of life
@@ -11,7 +13,7 @@ public abstract class Cell {
 
     private boolean alive;    
     private boolean nextAlive; // The state of the cell in the next iteration
-    private boolean aggresive, disease;
+    private boolean aggressive, disease;
     private Field field;
     private Location location;
     private Color color = Color.WHITE;
@@ -112,6 +114,29 @@ public abstract class Cell {
     /*
     Set if the Cell attacks
      */
-    protected void setAggresive(Boolean T){aggresive = T;}
-    protected boolean willAttack(){return aggresive;}
+    protected void setAggressive(Boolean T){
+        aggressive = T;}
+    protected boolean willAttack(){return aggressive;}
+
+
+    /*
+    returns a 2 digit integer
+    The first digit represents the living cells around it
+    The second digit represents the cells will attack
+     */
+    protected int checkSurrounding(){
+        List<Cell> neighbours = getField().getLivingNeighbours(getLocation());
+        List<Location> locations = getField().adjacentLocations(getLocation());
+        int alive = 0;
+        int attack = 0;
+        for (Location i : locations){
+            if(getField().getObjectAt(i).isAlive()){
+                alive++;
+            }
+            if(getField().getObjectAt(i).willAttack()){
+                attack++;
+            }
+        }
+        return alive*10+attack;
+    }
 }

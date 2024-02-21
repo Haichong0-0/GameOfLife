@@ -1,5 +1,4 @@
 import javafx.scene.paint.Color;
-import java.util.List;
 
 
 public class Amoeba extends Cell{
@@ -7,15 +6,27 @@ public class Amoeba extends Cell{
     public Amoeba(Field field, Location location, Color col) {
         super(field, location, col);
         generation = 0;
+        setAggressive(false);
+        setDisease(false);
     }
 
-    @Override
+
     public void act() {
         generation++;
-        Location location = getLocation();
-        if(generation>100){
-
-
+        setNextState(true);
+        if(!willAttack()&&generation>10){
+            setAggressive(true);
+        }
+        if(generation>20){
+            setNextState(false);
+        }
+        int nAlive = checkSurrounding();
+        int nAttack = nAlive%10;
+        nAlive = nAlive/10;
+        if (!isAlive()){
+            if (nAlive ==8){
+                setNextState(true);
+            }
         }
     }
 

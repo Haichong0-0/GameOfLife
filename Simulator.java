@@ -16,6 +16,9 @@ import java.util.Random;
 public class Simulator {
 
     private static final double MYCOPLASMA_ALIVE_PROB = 0.25;
+    private static final double AMOEBA_ALIVE_PROB = 0.05;
+
+
     private List<Cell> cells;
     private Field field;
     private int generation;
@@ -71,15 +74,20 @@ public class Simulator {
       field.clear();
       for (int row = 0; row < field.getDepth(); row++) {
         for (int col = 0; col < field.getWidth(); col++) {
-          Location location = new Location(row, col);
-          Mycoplasma myco = new Mycoplasma(field, location, Color.ORANGE);
-          if (rand.nextDouble() <= MYCOPLASMA_ALIVE_PROB) {
-            cells.add(myco);
-          }
-          else {
-            myco.setDead();
-            cells.add(myco);
-          }
+            Location location = new Location(row, col);
+            if (rand.nextDouble()<AMOEBA_ALIVE_PROB){
+                Amoeba amo = new Amoeba(field,location,Color.BLUE);
+                cells.add(amo);
+            }
+            else{
+                Mycoplasma myco = new Mycoplasma(field, location, Color.ORANGE);
+                if (rand.nextDouble() <= MYCOPLASMA_ALIVE_PROB) {
+                    cells.add(myco);
+                } else {
+                    myco.setDead();
+                    cells.add(myco);
+                }
+            }
         }
       }
     }
