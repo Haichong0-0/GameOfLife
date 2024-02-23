@@ -2,22 +2,32 @@ import javafx.scene.paint.Color;
 
 
 public class Amoeba extends Cell{
-    private int generation;
+
+
     public Amoeba(Field field, Location location, Color col) {
         super(field, location, col);
-        generation = 0;
+        age = 0;
         setAggressive(false);
         setDisease(false);
+        myType = CellType.Amoeba;
+    }
+
+    public Amoeba(Cell cell, Location location) {
+        super(cell , location);
+        age = 0;
+        setAggressive(false);
+        setDisease(false);
+        myType = CellType.Amoeba;
     }
 
 
     public void act() {
-        generation++;
+        age++;
         setNextState(true);
-        if(!willAttack()&&generation>10){
+        if(!willAttack()&&age>10){
             setAggressive(true);
         }
-        if(generation>20){
+        if(age>20){
             setNextState(false);
         }
         int nAlive = checkSurrounding();
@@ -29,6 +39,7 @@ public class Amoeba extends Cell{
             }
         }
     }
+
 
 
 }

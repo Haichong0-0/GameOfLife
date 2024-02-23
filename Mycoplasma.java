@@ -1,5 +1,4 @@
-import javafx.scene.paint.Color; 
-import java.util.List;
+import javafx.scene.paint.Color;
 
 /**
  * Simplest form of life.
@@ -23,25 +22,23 @@ public class Mycoplasma extends Cell {
         super(field, location, col);
         setAggressive(false);
         setDisease(false);
+        super.myType = CellType.Mycoplasma;
     }
+
+    public Mycoplasma(Cell cell, Location location) {
+        super(cell,location);
+        setAggressive(false);
+        setDisease(false);
+        super.myType = CellType.Mycoplasma;
+    }
+
 
     /**
     * This is how the Mycoplasma decides if it's alive or not
     */
     public void act() {
-        List<Cell> neighbours = getField().getLivingNeighbours(getLocation());
-        List<Location> locations = getField().adjacentLocations(getLocation());
-        //setNextState(false);
-        int alive = 0;
-        int attack = 0;
-        for (Location i : locations){
-            if(getField().getObjectAt(i).isAlive()){
-                alive++;
-                if(getField().getObjectAt(i).willAttack()){
-                    attack++;  
-                }
-            }
-        }
+        int alive = checkSurrounding()/10;
+        int attack = checkSurrounding()%10;
         setNextState(false);
         if (isAlive()){
             if(alive==2||alive==3){
@@ -54,8 +51,10 @@ public class Mycoplasma extends Cell {
             }
         }
 
+
         if(attack !=0){
             setNextState(false);
         }
+
     }
 }

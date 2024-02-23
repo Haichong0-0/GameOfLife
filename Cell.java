@@ -17,6 +17,8 @@ public abstract class Cell {
     private Field field;
     private Location location;
     private Color color = Color.WHITE;
+    protected CellType myType = null;
+    protected int age;
 
     /**
      * Create a new cell at location in field.
@@ -30,6 +32,7 @@ public abstract class Cell {
         this.field = field;
         setLocation(location);
         setColor(col);
+        age =0;
     }
 
     public Cell(Cell cell,Location location){
@@ -41,6 +44,8 @@ public abstract class Cell {
         this.field = cell.field;
         this.color = cell.color;
         this.location = location;
+        this.myType = cell.myType;
+        age =0;
 
     }
 
@@ -152,6 +157,10 @@ public abstract class Cell {
         return alive*10+attack;
     }
     protected boolean isReproduce(){return reproduce;}
+
+    public CellType getType(){
+        return myType;
+    }
 
 
 }

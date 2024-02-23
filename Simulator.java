@@ -47,11 +47,8 @@ public class Simulator {
         generation++;
         for (Iterator<Cell> it = cells.iterator(); it.hasNext(); ) {
             Cell cell = it.next();
-            boolean reproduce;
             cell.act();
         }
-
-
 
         for (Cell cell : cells) {
             if (cell.isReproduce()){
@@ -128,12 +125,20 @@ public class Simulator {
         int t = (int) (rand.nextDouble()*avaliableSpace.size());
         Location deadLocation = avaliableSpace.get(t);
         Cell deadCell = field.getObjectAt(deadLocation);
-        field.place(cell,deadLocation);
-        cells.set(cells.indexOf(deadCell), new Cell(cell, deadLocation) {
-            @Override
-            public void act() {
 
+        Cell newCell = switch (cell.getType()){
+            case Mollicutes :{
+                yield new Mollicutes(cell,deadLocation);
             }
-        });
+            case Amoeba:{
+                yield new Amoeba(cell,deadLocation);
+            }
+            case Mycoplasma:{
+                yield new Mycoplasma(cell,deadLocation);
+            }
+        };
+
+        field.place(newCell,deadLocation);
+        cells.set(cells.indexOf(deadCell), newCell);
     }
 }

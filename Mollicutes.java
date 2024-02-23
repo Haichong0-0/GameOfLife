@@ -1,27 +1,33 @@
 import javafx.scene.paint.Color;
-import java.util.List;
 
 
 public class Mollicutes extends Cell{
-    private int generation;
+
     public Mollicutes(Field field, Location location, Color col) {
         super(field, location, col);
-        generation = 0;
+        age = 0;
+        super.myType = CellType.Mollicutes;
+    }
+
+    public Mollicutes(Cell cell, Location location) {
+        super(cell,location);
+        age = 0;
+        super.myType = CellType.Mollicutes;
     }
 
     @Override
     public void act() {
-        generation++;
+        age++;
         Location location = getLocation();
-        
+
         if(isAlive())
         {
             setNextState(true);
         }
-        
-        if(generation%2==0){
+
+        if(age%2==0){
             setColor(Color.RED);
-        
+
         }
         else
         {
