@@ -7,13 +7,13 @@ Attack and defence mechanism with different strategy:
 
 
 Reproduction:
-When criterias are met,
+When criteria are met,
 A cell may replicate itself to a neighboring cell where its original cell is dead
 
-functions ana variables need to be edited:
-List<Cell> cells
-private Field field;
-simOneGeneration()
+FUNCTION DONE
+just make sure the variable reproduce is positive at the end pf the precess
+the new cell will be generated next sim
+
 
 
 Symbiosis:
