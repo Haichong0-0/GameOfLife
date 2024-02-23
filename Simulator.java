@@ -1,8 +1,6 @@
-import javafx.scene.paint.Color; 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Random;
+import javafx.scene.paint.Color;
+
+import java.util.*;
 
 
 /**
@@ -49,11 +47,17 @@ public class Simulator {
         generation++;
         for (Iterator<Cell> it = cells.iterator(); it.hasNext(); ) {
             Cell cell = it.next();
+            boolean reproduce;
             cell.act();
         }
 
+
+
         for (Cell cell : cells) {
-          cell.updateState();
+            if (cell.isReproduce()){
+                duplicate(cell);
+            }
+            cell.updateState();
         }
     }
 
@@ -111,5 +115,25 @@ public class Simulator {
 
     public int getGeneration() {
         return generation;
+    }
+
+    public void duplicate(Cell cell){
+        List<Location> avaliableSpace = new LinkedList<>();
+        List<Location> locations = cell.getField().adjacentLocations(cell.getLocation());
+        for (Location i:locations){
+            if (!field.getObjectAt(i).isAlive()){avaliableSpace.add(i);}
+        }
+
+        Random rand = new Random();
+        int t = (int) (rand.nextDouble()*avaliableSpace.size());
+        Location deadLocation = avaliableSpace.get(t);
+        Cell deadCell = field.getObjectAt(deadLocation);
+        field.place(cell,deadLocation);
+        cells.set(cells.indexOf(deadCell), new Cell(cell, deadLocation) {
+            @Override
+            public void act() {
+
+            }
+        });
     }
 }

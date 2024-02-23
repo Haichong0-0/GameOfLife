@@ -13,7 +13,7 @@ public abstract class Cell {
 
     private boolean alive;    
     private boolean nextAlive; // The state of the cell in the next iteration
-    private boolean aggressive, disease;
+    private boolean aggressive, disease,reproduce;
     private Field field;
     private Location location;
     private Color color = Color.WHITE;
@@ -30,6 +30,18 @@ public abstract class Cell {
         this.field = field;
         setLocation(location);
         setColor(col);
+    }
+
+    public Cell(Cell cell,Location location){
+        this.alive = cell.alive;
+        this.nextAlive = true;
+        this.aggressive = cell.aggressive;
+        this.disease = cell.disease;
+        this.reproduce = cell.reproduce;
+        this.field = cell.field;
+        this.color = cell.color;
+        this.location = location;
+
     }
 
     /**
@@ -139,4 +151,7 @@ public abstract class Cell {
         }
         return alive*10+attack;
     }
+    protected boolean isReproduce(){return reproduce;}
+
+
 }
