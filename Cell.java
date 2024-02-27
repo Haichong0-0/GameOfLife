@@ -135,7 +135,7 @@ public abstract class Cell {
         aggressive = T;}
     protected boolean willAttack(){return aggressive;}
 
-
+    
     /*
     returns a 2 digit integer
     The first digit represents the living cells around it

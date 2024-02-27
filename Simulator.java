@@ -15,7 +15,8 @@ public class Simulator {
 
     private static final double MYCOPLASMA_ALIVE_PROB = 0.25;
     private static final double AMOEBA_ALIVE_PROB = 0.05;
-    private static final double MOLLICUTE_ALIVE_PROB = 0.10;
+    private static final double MOLLICUTE_ALIVE_PROB = 0.20;
+    private static final double PARASITE_ALIVE_PROB = 0.30;
 
     private List<Cell> cells;
     private Field field;
@@ -77,17 +78,23 @@ public class Simulator {
         for (int col = 0; col < field.getWidth(); col++) {
             Location location = new Location(row, col);
             double random = rand.nextDouble();
-            if (random<AMOEBA_ALIVE_PROB){
+            /*if (random<AMOEBA_ALIVE_PROB){
                 Amoeba amo = new Amoeba(field,location,Color.BLUE);
                 cells.add(amo);
-            }
-            else if(random<MOLLICUTE_ALIVE_PROB)
+            }*/
+            if(random<MOLLICUTE_ALIVE_PROB)
             {
                 Mollicute mol = new Mollicute(field,location,Color.GREEN);
                 cells.add(mol);
                 
             }
-            else
+            else if(random<PARASITE_ALIVE_PROB)
+            {
+                Parasite par = new Parasite(field,location,Color.PURPLE);
+                cells.add(par);
+                
+            }
+            /*else
             {
                 Mycoplasma myco = new Mycoplasma(field, location, Color.ORANGE);
                 if (random <= MYCOPLASMA_ALIVE_PROB) 
@@ -99,7 +106,7 @@ public class Simulator {
                     myco.setDead();
                     cells.add(myco);
                 }
-            }
+            }*/
         }
       }
     }
@@ -138,7 +145,7 @@ public class Simulator {
         Cell deadCell = field.getObjectAt(deadLocation);
 
         Cell newCell = switch (cell.getType()){
-            case Mollicutes :{
+            case Mollicute :{
                 yield new Mollicute(cell,deadLocation);
             }
             case Amoeba:{

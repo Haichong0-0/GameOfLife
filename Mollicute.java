@@ -6,13 +6,13 @@ public class Mollicute extends Cell{
     public Mollicute(Field field, Location location, Color col) {
         super(field, location, col);
         age = 0;
-        super.myType = CellType.Mollicutes;
+        super.myType = CellType.Mollicute;
     }
 
     public Mollicute(Cell cell, Location location) {
         super(cell,location);
         age = 0;
-        super.myType = CellType.Mollicutes;
+        super.myType = CellType.Mollicute;
     }
 
     @Override
@@ -34,6 +34,10 @@ public class Mollicute extends Cell{
         else
         {
             setColor(Color.GREEN);
+        }
+        
+        if(attack !=0){
+            setNextState(false);
         }
     }
 
