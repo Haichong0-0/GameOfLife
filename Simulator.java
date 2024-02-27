@@ -15,7 +15,7 @@ public class Simulator {
 
     private static final double MYCOPLASMA_ALIVE_PROB = 0.25;
     private static final double AMOEBA_ALIVE_PROB = 0.05;
-
+    private static final double MOLLICUTE_ALIVE_PROB = 0.10;
 
     private List<Cell> cells;
     private Field field;
@@ -76,15 +76,26 @@ public class Simulator {
       for (int row = 0; row < field.getDepth(); row++) {
         for (int col = 0; col < field.getWidth(); col++) {
             Location location = new Location(row, col);
-            if (rand.nextDouble()<AMOEBA_ALIVE_PROB){
+            double random = rand.nextDouble();
+            if (random<AMOEBA_ALIVE_PROB){
                 Amoeba amo = new Amoeba(field,location,Color.BLUE);
                 cells.add(amo);
             }
-            else{
+            else if(random<MOLLICUTE_ALIVE_PROB)
+            {
+                Mollicute mol = new Mollicute(field,location,Color.GREEN);
+                cells.add(mol);
+                
+            }
+            else
+            {
                 Mycoplasma myco = new Mycoplasma(field, location, Color.ORANGE);
-                if (rand.nextDouble() <= MYCOPLASMA_ALIVE_PROB) {
+                if (random <= MYCOPLASMA_ALIVE_PROB) 
+                {
                     cells.add(myco);
-                } else {
+                } 
+                else 
+                {
                     myco.setDead();
                     cells.add(myco);
                 }
@@ -128,13 +139,16 @@ public class Simulator {
 
         Cell newCell = switch (cell.getType()){
             case Mollicutes :{
-                yield new Mollicutes(cell,deadLocation);
+                yield new Mollicute(cell,deadLocation);
             }
             case Amoeba:{
                 yield new Amoeba(cell,deadLocation);
             }
             case Mycoplasma:{
                 yield new Mycoplasma(cell,deadLocation);
+            }
+            case Parasite:{
+                yield new Parasite(cell,deadLocation);
             }
         };
 

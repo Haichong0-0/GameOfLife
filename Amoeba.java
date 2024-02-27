@@ -11,7 +11,7 @@ public class Amoeba extends Cell{
         setDisease(false);
         myType = CellType.Amoeba;
     }
-
+    
     public Amoeba(Cell cell, Location location) {
         super(cell , location);
         age = 0;
@@ -19,8 +19,8 @@ public class Amoeba extends Cell{
         setDisease(false);
         myType = CellType.Amoeba;
     }
-
-
+    
+    
     public void act() {
         age++;
         setNextState(true);

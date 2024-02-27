@@ -1,4 +1,4 @@
 public enum CellType
 {
-    Amoeba(), Mollicutes(),Mycoplasma();
+    Amoeba(), Mollicutes(),Mycoplasma(),Parasite();
 }
