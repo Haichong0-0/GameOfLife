@@ -41,5 +41,25 @@ Actions can be taken includes:
 
 
 Amoeba:
+    life time: 50
+    Death condition: have >=3 aggressive around
+    reproductive at the end of its life foe 2 generations
     Strategy:tit for tat
+    Desease behavior:
+        Never aggressive
+        Effects all surrounding cells
+        life span shortens to 30
+
+Mycoplasma:
+    Life time: infinity
+    Death condition: <2 or >3 alive cells around
+    reproduction: always
+    Strategy:Never Attack
+    Desease behavior:
+        Turns aggressive
+        heals if there is 2 healthy cells
+        dies after 10 simulation infected
+        does not attack surrounding cells
+
+
 

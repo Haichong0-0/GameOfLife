@@ -12,17 +12,20 @@ import javafx.scene.paint.Color;
 
 public class Mycoplasma extends Cell {
 
+    private int dCount;
     /**
      * Create a new Mycoplasma.
      *
      * @param field The field currently occupied.
      * @param location The location within the field.
      */
+
     public Mycoplasma(Field field, Location location, Color col) {
         super(field, location, col);
         setAggressive(false);
         setDisease(false);
         super.myType = CellType.Mycoplasma;
+        dCount =0;
     }
 
     public Mycoplasma(Cell cell, Location location) {
@@ -37,24 +40,39 @@ public class Mycoplasma extends Cell {
     * This is how the Mycoplasma decides if it's alive or not
     */
     public void act() {
-        int alive = checkSurrounding()/10;
-        int attack = checkSurrounding()%10;
+        int num = checkSurrounding();
+        int nAlive = num/100;
+        int nAttack = (num -nAlive*100)/10;
+        int nDisease = num -nAlive*100-nAttack*10;
         setNextState(false);
         if (isAlive()){
-            if(alive==2||alive==3){
-                setNextState(true);
+            if (nDisease>1){
+                setDisease(true);
             }
+            if (hasDisease()){
+                setAggressive(true);
+                dCount++;
+            }
+            if (dCount>10){
+                setNextState(false);
+            }
+            if (nAlive>3||nAlive<2){
+                setNextState(false);
+            }
+            if (nAlive-nDisease == 2){
+                setDisease(false);
+                dCount =0;
+
+            }
+
+
         }
         else{
-            if (alive ==3){
+            if (nAlive ==3){
                 setNextState(true);
             }
         }
 
-
-        if(attack !=0){
-            setNextState(false);
-        }
 
     }
 }

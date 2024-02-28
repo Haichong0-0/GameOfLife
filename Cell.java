@@ -13,7 +13,8 @@ public abstract class Cell {
 
     private boolean alive;    
     private boolean nextAlive; // The state of the cell in the next iteration
-    private boolean aggressive, disease,reproduce;
+    private boolean aggressive, reproduce;
+    private boolean disease, spread;
     private Field field;
     private Location location;
     private Color color = Color.WHITE;
@@ -32,6 +33,7 @@ public abstract class Cell {
         this.field = field;
         setLocation(location);
         setColor(col);
+        spread = false;
         age =0;
     }
 
@@ -40,11 +42,12 @@ public abstract class Cell {
         this.nextAlive = true;
         this.aggressive = cell.aggressive;
         this.disease = cell.disease;
-        this.reproduce = cell.reproduce;
+        this.reproduce = false;
         this.field = cell.field;
         this.color = cell.color;
         this.location = location;
         this.myType = cell.myType;
+        this.spread = cell.spread;
         age =0;
 
     }
@@ -125,6 +128,8 @@ public abstract class Cell {
     Set the disease condition of the cell
      */
     protected void setDisease(Boolean T){disease = T;}
+    public boolean  isContagious(){return spread;}
+    public void setContagious(Boolean b){spread = b;}
 
     protected boolean hasDisease(){return disease;}
 
@@ -146,21 +151,30 @@ public abstract class Cell {
         List<Location> locations = getField().adjacentLocations(getLocation());
         int alive = 0;
         int attack = 0;
+        int disease = 0;
         for (Location i : locations){
-            if(getField().getObjectAt(i).isAlive()){
+            Cell obj  = getField().getObjectAt(i);
+            if(obj.isAlive()){
                 alive++;
             }
-            if(getField().getObjectAt(i).willAttack()){
+            if(obj.willAttack()){
                 attack++;
             }
+            if(obj.isContagious()){
+                disease++;
+            }
         }
-        return alive*10+attack;
+        return alive*100+attack*10+disease;
     }
     protected boolean isReproduce(){return reproduce;}
+    protected void setReproduce(boolean b){
+        reproduce = b;
+    }
 
     public CellType getType(){
         return myType;
     }
+
 
 
 }

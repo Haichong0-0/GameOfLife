@@ -14,7 +14,6 @@ public class Amoeba extends Cell{
     
     public Amoeba(Cell cell, Location location) {
         super(cell , location);
-        age = 0;
         setAggressive(false);
         setDisease(false);
         myType = CellType.Amoeba;
@@ -23,21 +22,45 @@ public class Amoeba extends Cell{
     
     public void act() {
         age++;
-        setNextState(true);
-        if(!willAttack()&&age>10){
-            setAggressive(true);
-        }
-        if(age>20){
-            setNextState(false);
-        }
-        int nAlive = checkSurrounding();
-        int nAttack = nAlive%10;
-        nAlive = nAlive/10;
-        if (!isAlive()){
-            if (nAlive ==8){
-                setNextState(true);
+
+
+        setAggressive(true);
+        setReproduce(false);
+        if (age<50&&isAlive()){
+            setNextState(true);
+            int num = checkSurrounding();
+            int nAlive = num/100;
+            int nAttack = (num -nAlive*100)/10;
+            int nDisease = num -nAlive*100-nAttack*10;
+            nAlive = nAlive/10;
+            switch (nAttack){
+                case 8,7,6,5,4,3:
+                    setNextState(false);
+                case 2,1:
+                    setAggressive(true);
+                    break;
+                case 0:
+                    setAggressive(false);
+            }
+            if (nDisease>0){
+                setDisease(true);
+            }
+            if (age>47){
+                setReproduce(true);
             }
         }
+        else{
+            setNextState(false);
+        }
+        if(hasDisease()){
+            if(age>30){
+                setNextState(false);
+            }
+            setAggressive(false);
+            setContagious(true);
+        }
+
+
     }
 
 
