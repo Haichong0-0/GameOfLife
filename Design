@@ -3,6 +3,7 @@ Attack and defence mechanism with different strategy:
     Tit for tat: aggressive if were attacked previous turn
     Always Aggresive: Always attacks
     Always Defensive: Never attacks
+    Conditional: Aggressive when conditions are met
     to be added.....
 
 
@@ -13,15 +14,6 @@ A cell may replicate itself to a neighboring cell where its original cell is dea
 FUNCTION DONE
 just make sure the variable reproduce is positive at the end pf the precess
 the new cell will be generated next sim
-
-
-
-Symbiosis:
-    Type: Parasitic
-    Lifetime: 
-    Reproduction: 
-    Strategy: 
-    Disease behaviour:
 
 
 Disease:
@@ -63,10 +55,24 @@ Mycoplasma:
         does not attack surrounding cells
 
 Mollicute:
-    Lifetime: 
-    Reproduction: 
-    Strategy: 
+    Lifetime: infinite
+    Death condition: 
+    Reproduction: reproductive every 20 generations
+    Strategy: Never Attack
     Disease behaviour:
+        Dies if age 50 or higher
+
+Symbiosis:
+    Type: Parasitic
+    Lifetime: infinite
+    Death condition:  <4 alive cells around
+    Reproduction: never
+    Strategy: Conditional: Only if nearby cell is a mollicute
+                           And cannot attack other parasites
+    Disease behaviour:
+        Become diseased at age 30
+        Become able to attack other parasites
+        
 
 
 
