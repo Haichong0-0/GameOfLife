@@ -25,7 +25,7 @@ public class Mollicute extends Cell{
         
         if (isAlive())
         {
-            if (alive>6||alive<2)
+            if (alive>7||alive<2)
             {
                 setNextState(false);
             }
@@ -33,7 +33,7 @@ public class Mollicute extends Cell{
             {
                 setNextState(false);
             }
-            if (age % 20 == 0)
+            if (age % 15 == 0)
             {
                 setReproduce(true);
             }
@@ -47,7 +47,7 @@ public class Mollicute extends Cell{
             }
             else
             {
-                setColor(Color.GREEN);
+                setColor(Color.BLACK);
             }   
         }
         else

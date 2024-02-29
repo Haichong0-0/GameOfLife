@@ -86,6 +86,7 @@ public class Parasite extends Cell{
             if (age > 30)
             {
                 setDisease(true);
+                setContagious(true);
             }
             if (mollicutes !=0)
             {
@@ -112,7 +113,9 @@ public class Parasite extends Cell{
             }
         }
         
-        
+        if (!isAlive()){
+            setContagious(false);
+        }
         
         
     

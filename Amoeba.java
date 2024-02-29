@@ -22,8 +22,6 @@ public class Amoeba extends Cell{
     
     public void act() {
         age++;
-
-
         setAggressive(true);
         setReproduce(false);
         if (age<50&&isAlive()){
@@ -45,7 +43,7 @@ public class Amoeba extends Cell{
             if (nDisease>0){
                 setDisease(true);
             }
-            if (age>47){
+            if (age>46){
                 setReproduce(true);
             }
         }
