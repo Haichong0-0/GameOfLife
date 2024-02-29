@@ -17,10 +17,11 @@ the new cell will be generated next sim
 
 
 Symbiosis:
-Mutualism:
-
-parasitic:
-
+    Type: Parasitic
+    Lifetime: 
+    Reproduction: 
+    Strategy: 
+    Disease behaviour:
 
 
 Disease:
@@ -45,7 +46,7 @@ Amoeba:
     Death condition: have >=3 aggressive around
     reproductive at the end of its life foe 2 generations
     Strategy:tit for tat
-    Desease behavior:
+    Disease behavior:
         Never aggressive
         Effects all surrounding cells
         life span shortens to 30
@@ -60,6 +61,12 @@ Mycoplasma:
         heals if there is 2 healthy cells
         dies after 10 simulation infected
         does not attack surrounding cells
+
+Mollicute:
+    Lifetime: 
+    Reproduction: 
+    Strategy: 
+    Disease behaviour:
 
 
 
