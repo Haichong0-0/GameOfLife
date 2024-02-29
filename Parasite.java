@@ -50,10 +50,10 @@ public class Parasite extends Cell{
         int num = checkSurrounding();
         int alive = num/100;
         int attack = (num -alive*100)/10;
+        int disease = num -alive*100-attack*10;
         
         int mollicutes =0;
         int parasites =0;
-        
        
         List<Location> locations = getField().adjacentLocations(getLocation());
         
@@ -80,7 +80,23 @@ public class Parasite extends Cell{
         
         if (isAlive())
         {
-            if (alive>3){
+            if (alive<5){
+                setNextState(false);
+            }
+            if (age > 30)
+            {
+                setDisease(true);
+            }
+            if (mollicutes !=0)
+            {
+                setAggressive(true);
+            }
+            else
+            {
+                setAggressive(false);
+            }
+            if(attack !=0 && !friendlyFire && !hasDisease())
+            {
                 setNextState(false);
             }
         }
@@ -90,34 +106,21 @@ public class Parasite extends Cell{
             {
                 setNextState(true);
             }
+            if (mollicutes > 3)
+            {
+                setNextState(true);
+            }
         }
         
         
         
         
-        if (mollicutes !=0)
-        {
-            setAggressive(true);
-        }
-        else
-        {
-            setAggressive(false);
-        }
-        
-        if (mollicutes > 3)
-        {
-            setNextState(true);
-        }
-        
-        
-         
-        if(attack !=0 && !friendlyFire){
-            setNextState(false);
-            //setColor(Color.ORANGE);
     
-        }
         
-       
+        
+        
+        
+        
         
         
         
