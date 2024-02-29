@@ -16,15 +16,25 @@ public class Mollicute extends Cell{
     }
 
     @Override
-    public void act() {
+    public void act() { 
         age++;
-        int alive = checkSurrounding()/10;
-        int attack = checkSurrounding()%10;
-        setNextState(false);
-
-        if(isAlive())
+        int num = checkSurrounding();
+        int alive = num/100;
+        int attack = (num -alive*100)/10;
+        
+        if (isAlive())
         {
-            setNextState(true);
+            if (alive>3||alive<2)
+            {
+                setNextState(false);
+            }
+        }
+        else
+        {
+            if (alive > 2)
+            {
+                setNextState(true);
+            }
         }
 
         if(age%2==0){
@@ -36,9 +46,11 @@ public class Mollicute extends Cell{
             setColor(Color.GREEN);
         }
         
-        if(attack !=0){
+        if(attack !=0 ){
             setNextState(false);
         }
+        
+       
     }
 
 
