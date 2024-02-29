@@ -63,7 +63,7 @@ Mollicute:
         Dies if age 50 or higher
 
 Symbiosis:
-    Type: Parasitic
+    Type: Parasite
     Lifetime: infinite
     Death condition:  <5 alive cells around
     Reproduction: never
@@ -73,7 +73,10 @@ Symbiosis:
         Become diseased at age 30
         Become able to attack other parasites
         Contagious
-        
+
+    Mollicute and Parasite have a symbiotic relationship
+    Parasite 'feeds' on Mollicute as they attack nearby Mollicute and grow when there are clumps of nearby Mollicutes.
+    However Mollicute is only harmed in the relationship as they never attack and their reproduction is independent of other cells.
 
 
 
