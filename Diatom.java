@@ -32,6 +32,8 @@ public class Diatom extends Cell{
         setAggressive(false);
         setReproduce(random>0.9);
         setNextState(true);
+
+        //age limit
         if (age>12){
             setNextState(false);
         }

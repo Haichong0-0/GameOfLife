@@ -28,6 +28,7 @@ public class Mollicute extends Cell{
         
         if (isAlive())
         {
+            //behavior as described in report
             if (alive>7||alive<2)
             {
                 setNextState(false);
@@ -36,6 +37,7 @@ public class Mollicute extends Cell{
             {
                 setNextState(false);
             }
+            //reproduction every 15 generaiton
             if (age % 15 == 0)
             {
                 setReproduce(true);
@@ -44,6 +46,7 @@ public class Mollicute extends Cell{
             {
                 setReproduce(false);
             }
+            //Color change
             if(age%2==0)
             {
                 setColor(Color.RED);
@@ -60,14 +63,11 @@ public class Mollicute extends Cell{
                 setNextState(true);
             }
         }
-    
-        
-        
+
         if(attack !=0 ){
             setNextState(false);
         }
-        
-        
+
         if (disease > 0)
         {
             setDisease(true);

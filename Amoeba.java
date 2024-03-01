@@ -27,12 +27,13 @@ public class Amoeba extends Cell{
         if (age<50&&isAlive()){
             setNextState(true);
             int num = checkSurrounding();
-            int nAlive = num/100;
-            int nAttack = (num -nAlive*100)/10;
-            int nDisease = num -nAlive*100-nAttack*10;
+            int nAlive = num/100;// Calculate number of alive cells
+            int nAttack = (num -nAlive*100)/10;// Calculate number of attacks
+            int nDisease = num -nAlive*100-nAttack*10;// Calculate number of diseases
             nAlive = nAlive/10;
             switch (nAttack){
                 case 8,7,6,5,4,3:
+                    //increment disease count
                     dcount++;
                 case 2,1:
                     setAggressive(true);
@@ -56,6 +57,7 @@ public class Amoeba extends Cell{
         else{
             setNextState(false);
         }
+        // If Amoeba has disease, change behavior
         if(hasDisease()){
             setColor(Color.LIGHTBLUE);
             if(age>30){
@@ -65,9 +67,8 @@ public class Amoeba extends Cell{
             setAggressive(false);
             setContagious(true);
         }
+        //Child protection
         if (age<3){setNextState(true);}
-
-
     }
 
 

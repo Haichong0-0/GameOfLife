@@ -16,41 +16,17 @@ public class Parasite extends Cell{
         age = 0;
         super.myType = CellType.Parasite;
     }
-    
-    /*@Override
-    protected int checkSurrounding(){
-        List<Cell> neighbours = getField().getLivingNeighbours(getLocation());
-        List<Location> locations = getField().adjacentLocations(getLocation());
-        int alive = 0;
-        int attack = 0;
-        int mollicutes = 0;
-        for (Location i : locations){
-            if(getField().getObjectAt(i).isAlive()){
-                alive++;
-            }
-            if(getField().getObjectAt(i).willAttack()){
-                attack++;
-            }
-            if(getField().getObjectAt(i).getType() == CellType.Mollicute){
-                mollicutes++;
-            }
-            
-        }
-        return alive*100+attack*10+mollicutes; 
-    }*/
+
 
     @Override
     public void act() {
         age++;
-        //int attack = Math.round(((checkSurrounding()%100)/10)*10);
-        //int mollicutes = checkSurrounding()%10;
 
         boolean friendlyFire = false;
         
         int num = checkSurrounding();
-        int alive = num/100;
+        int alive = num/100;//alive cells round
         int attack = (num -alive*100)/10;
-        int disease = num -alive*100-attack*10;
         
         int mollicutes =0;
         int parasites =0;
@@ -83,11 +59,13 @@ public class Parasite extends Cell{
             if (alive<5){
                 setNextState(false);
             }
+            //age restriction
             if (age > 30)
             {
                 setDisease(true);
                 setContagious(true);
             }
+            //reacting to cells it parasites on
             if (mollicutes !=0)
             {
                 setAggressive(true);
@@ -98,11 +76,13 @@ public class Parasite extends Cell{
                 setAggressive(false);
                 setReproduce(false);
             }
+
             if(attack !=0 && !friendlyFire && !hasDisease())
             {
                 setNextState(false);
             }
         }
+
         else
         {
             if (alive == 2)

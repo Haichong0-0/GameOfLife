@@ -45,6 +45,7 @@ public class Mycoplasma extends Cell {
         int nAttack = (num -nAlive*100)/10;
         int nDisease = num -nAlive*100-nAttack*10;
         setNextState(false);
+        //cell behavior as requested in base task
         if (isAlive()){
             if (nDisease>1){
                 setDisease(true);

@@ -107,6 +107,7 @@ public class Simulator {
         return generation;
     }
 
+    //duplicates the given cell and places it in a near by empty locaiton
     public void duplicate(Cell cell) {
         List<Location> avaliableSpace = new LinkedList<>();
         List<Location> locations = cell.getField().adjacentLocations(cell.getLocation());
@@ -143,7 +144,7 @@ public class Simulator {
         }
     }
 
-
+    //returns a random cell from the given probabilities
     private Cell randomCell(Location location) {
         Random rand = Randomizer.getRandom();
         double random = rand.nextDouble();

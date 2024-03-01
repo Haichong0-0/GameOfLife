@@ -37,6 +37,7 @@ public abstract class Cell {
         age =0;
     }
 
+    //constructor for duplicating the cell in new location
     public Cell(Cell cell,Location location){
         this.alive = cell.alive;
         this.nextAlive = true;
