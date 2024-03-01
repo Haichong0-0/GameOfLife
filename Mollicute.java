@@ -1,5 +1,7 @@
 import javafx.scene.paint.Color;
 
+import java.awt.*;
+
 
 public class Mollicute extends Cell{
 
@@ -22,6 +24,7 @@ public class Mollicute extends Cell{
         int alive = num/100;
         int attack = (num -alive*100)/10;
         int disease = num -alive*100-attack*10;
+        setAggressive(false);
         
         if (isAlive())
         {

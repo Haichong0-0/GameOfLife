@@ -73,7 +73,7 @@ public class SimulatorView extends Application {
         updateCanvas(simulator.getGeneration(), simulator.getField());
         
         stage.show();
-        simulate(500);
+        simulate(50000);
     }
 
     /**

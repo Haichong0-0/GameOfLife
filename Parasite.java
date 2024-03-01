@@ -91,10 +91,12 @@ public class Parasite extends Cell{
             if (mollicutes !=0)
             {
                 setAggressive(true);
+                setReproduce(true);
             }
             else
             {
                 setAggressive(false);
+                setReproduce(false);
             }
             if(attack !=0 && !friendlyFire && !hasDisease())
             {
@@ -111,22 +113,10 @@ public class Parasite extends Cell{
             {
                 setNextState(true);
             }
-        }
-        
-        if (!isAlive()){
+            setDisease(false);
             setContagious(false);
         }
-        
-        
-    
-        
-        
-        
-        
-        
-        
-        
-        
+
     }
 
 
