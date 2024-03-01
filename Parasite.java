@@ -65,16 +65,16 @@ public class Parasite extends Cell{
                 setDisease(true);
                 setContagious(true);
             }
-            //reacting to cells it parasites on
+            //reacting to cells if mollicutes nearby
             if (mollicutes !=0)
             {
                 setAggressive(true);
-                setReproduce(true);
+                setReproduce(false);
             }
             else
             {
                 setAggressive(false);
-                setReproduce(false);
+
             }
 
             if(attack !=0 && !friendlyFire && !hasDisease())

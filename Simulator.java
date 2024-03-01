@@ -15,8 +15,8 @@ public class Simulator {
 
     private static final double AMOEBA_ALIVE_PROB = 0.05;
     private static final double MOLLICUTE_ALIVE_PROB = 0.25;
-    private static final double PARASITE_ALIVE_PROB = 0.35;
-    private static final double Diatom_ALIVE_PROB = 0.50;
+    private static final double PARASITE_ALIVE_PROB = 0.45;
+    private static final double Diatom_ALIVE_PROB = 0.63;
     private static final double MYCOPLASMA_ALIVE_PROB = 0.25;
 
     private List<Cell> cells;

@@ -38,7 +38,7 @@ public class Mollicute extends Cell{
                 setNextState(false);
             }
             //reproduction every 15 generaiton
-            if (age % 15 == 0)
+            if (age % 10 == 0)
             {
                 setReproduce(true);
             }
@@ -58,6 +58,9 @@ public class Mollicute extends Cell{
         }
         else
         {
+            setNextState(false);
+            setAggressive(false);
+            setContagious(false);
             if (alive == 2)
             {
                 setNextState(true);

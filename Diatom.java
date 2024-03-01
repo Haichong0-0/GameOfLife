@@ -30,7 +30,7 @@ public class Diatom extends Cell{
         int nDisease = num -nAlive*100-nAttack*10;
         double random = rand.nextDouble();
         setAggressive(false);
-        setReproduce(random>0.9);
+        setReproduce(random>0.88);
         setNextState(true);
 
         //age limit
@@ -39,6 +39,9 @@ public class Diatom extends Cell{
         }
         if (!isAlive()){
             setReproduce(false);
+            setNextState(false);
+            setAggressive(false);
+            setContagious(false);
         }
         if (nAttack>=1){
             setNextState(false);

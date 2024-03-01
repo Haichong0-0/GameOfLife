@@ -50,23 +50,25 @@ public class Amoeba extends Cell{
             if (nDisease>0){
                 setDisease(true);
             }
-            if (age>40){
+            if (age>45){
                 setReproduce(true);
+            }
+            if(hasDisease()){
+                setColor(Color.LIGHTBLUE);
+                if(age>30){
+                    setNextState(false);
+                }
+                setAggressive(false);
+                setContagious(true);
             }
         }
         else{
             setNextState(false);
+            setAggressive(false);
+            setContagious(false);
         }
         // If Amoeba has disease, change behavior
-        if(hasDisease()){
-            setColor(Color.LIGHTBLUE);
-            if(age>30){
-                setNextState(false);
-                System.out.println("Amoeba dies at age "+age);
-            }
-            setAggressive(false);
-            setContagious(true);
-        }
+
         //Child protection
         if (age<3){setNextState(true);}
     }
