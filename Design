@@ -44,10 +44,10 @@ Amoeba:
         life span shortens to 30
 
 Mycoplasma:
-    Life time: infinity
+    Life time: infinity 
     Death condition: <2 or >3 alive cells around
     reproduction: always
-    Strategy:Never Attack
+    Strategy: Never Attack
     Desease behavior:
         Turns aggressive
         heals if there is 2 healthy cells
@@ -56,27 +56,28 @@ Mycoplasma:
 
 Mollicute:
     Lifetime: infinite
-    Death condition: 
-    Reproduction: reproductive every 20 generations
+    Death condition: 7> or <2 alive cells around
+    Reproduction: reproductive every 15 generations
     Strategy: Never Attack
     Disease behaviour:
         Dies if age 50 or higher
 
 Symbiosis:
-    Type: Parasitic
+    Type: Parasite
     Lifetime: infinite
-    Death condition:  <4 alive cells around
+    Death condition:  <5 alive cells around
     Reproduction: never
     Strategy: Conditional: Only if nearby cell is a mollicute
                            And cannot attack other parasites
     Disease behaviour:
         Become diseased at age 30
         Become able to attack other parasites
-        
+        Contagious
 
+    Mollicute and Parasite have a symbiotic relationship
+    Parasite 'feeds' on Mollicute as they attack nearby Mollicute and grow when there are clumps of nearby Mollicutes.
+    However Mollicute is only harmed in the relationship as they never attack and their reproduction is independent of other cells.
 
-Paeasite:
-    Life time: infinity
 
 
 
